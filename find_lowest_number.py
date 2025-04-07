@@ -22,18 +22,16 @@ number_found = False
 
 with open(input_filename, 'r') as input_file:
     for line in input_file:
-        if number_found == False:
-            try:
-                lowest_number = float(line)
+        try:
+            number = float(line)
+            if not number_found or number < lowest_number:
+                lowest_number = number
                 number_found = True
-            except ValueError:
-                break
-        else:
-            if float(line) < lowest_number:
-                lowest_number = float(line)
+        except ValueError:
+            continue
 
 with open(output_filename, 'w') as output_file:
     if number_found:
-        output_file.write(f"{int(lowest_number)}\n")
+        output_file.write(f"{lowest_number}\n")
     else:
         output_file.write("No numbers found in file\n")
