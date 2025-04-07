@@ -18,26 +18,22 @@ import sys
 input_filename = sys.argv[1]
 output_filename = sys.argv[2]
 
-lowest_number = None
+number_found = False
 
 with open(input_filename, 'r') as input_file:
     for line in input_file:
-        # Remove any extra whitespace/newlines
-        line = line.strip()
-        # Skip empty lines
-        if not line:
-            continue
-        try:
-            number = float(line)
-            # If it's the first valid number or if the current number is lower, update lowest_number.
-            if lowest_number is None or number < lowest_number:
-                lowest_number = number
-        except ValueError:
-            # Skip lines that cannot be converted to a number.
-            continue
+        if number_found == False:
+            try:
+                lowest_number = float(line)
+                number_found = True
+            except ValueError:
+                break
+        else:
+            if float(line) < lowest_number:
+                lowest_number = float(line)
 
 with open(output_filename, 'w') as output_file:
-    if lowest_number is not None:
-        output_file.write(str(lowest_number))
+    if number_found:
+        output_file.write(f"{int(lowest_number)}\n")
     else:
-        output_file.write("No numbers found in file")
+        output_file.write("No numbers found in file\n")
