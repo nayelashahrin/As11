@@ -1,0 +1,22 @@
+name: Automated Test
+
+on: [push]
+
+jobs:
+  automated_test:
+    name: Automated Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+      - name: Run Tests
+        run: |
+          python find_lowest_number.py test_data/test1_input.txt output1.txt
+          diff output1.txt test_data/test1_expected.txt
+          python find_lowest_number.py test_data/test2_input.txt output2.txt
+          diff output2.txt test_data/test2_expected.txt
+          python find_lowest_number.py test_data/test3_input.txt output3.txt
+          diff output3.txt test_data/test3_expected.txt
