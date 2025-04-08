@@ -24,12 +24,12 @@ with open(input_filename, 'r') as input_file:
     for line in input_file:
         if number_found == False:
             try:
-                lowest_number = float(line)
+                lowest_number = int(line)
                 number_found = True
             except ValueError:
                 continue
         else:
-            if float(line) < lowest_number:
+            if int(line) < lowest_number:
                 lowest_number = float(line)
 
 with open(output_filename, 'w') as output_file:
