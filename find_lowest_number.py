@@ -27,13 +27,13 @@ with open(input_filename, 'r') as input_file:
                 lowest_number = float(line)
                 number_found = True
             except ValueError:
-                continue  # Skip non-numeric lines
+                continue
         else:
             if float(line) < lowest_number:
                 lowest_number = float(line)
 
 with open(output_filename, 'w') as output_file:
     if number_found:
-        output_file.write(f"{int(lowest_number)}\n")
+        output_file.write(str(lowest_number) + "\n")
     else:
         output_file.write("No numbers found in file\n")
