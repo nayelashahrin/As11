@@ -1,17 +1,3 @@
-# The script will find the lowest number in a file and write it to another file.
-#
-# Run as: python3 find_lowest_number.py <input_file> <output_file>
-#
-# Example: python3 find_lowest_number.py numbers.txt lowest_number.txt
-#
-# If python is setup to run as "python" instead of "python3" on the machine, 
-# then we should use "python" instead of "python3" in the above.
-#
-# The input file should contain one number per line. The output file will 
-# contain the lowest number.
-#
-# If the input file is blank, the output file will contain the text: "No 
-# numbers found in file".
 
 import sys
 
@@ -30,7 +16,7 @@ with open(input_filename, 'r') as input_file:
                 continue
         else:
             if int(line) < lowest_number:
-                lowest_number = float(line)
+                lowest_number = int(line)
 
 with open(output_filename, 'w') as output_file:
     if number_found:
